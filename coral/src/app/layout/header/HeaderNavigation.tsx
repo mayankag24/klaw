@@ -5,7 +5,7 @@ import code from "@aivenio/aquarium/icons/code";
 import codeBlock from "@aivenio/aquarium/icons/codeBlock";
 import dataflow02 from "@aivenio/aquarium/icons/dataflow02";
 import people from "@aivenio/aquarium/icons/people";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import HeaderMenuLink from "src/app/layout/header/HeaderMenuLink";
 import { Routes } from "src/app/router_utils";
 import { ProfileDropdown } from "src/app/layout/header/ProfileDropdown";
@@ -19,13 +19,20 @@ const requestNewEntityPaths: { [key: string]: string } = {
 
 function HeaderNavigation() {
   const navigate = useNavigate();
+  const { pathname, state } = useLocation();
 
   return (
     <Box display={"flex"} colGap={"l2"} alignItems="center">
       <DropdownMenu
         onAction={(key) => {
           if (requestNewEntityPaths[key] !== undefined) {
-            navigate(requestNewEntityPaths[key]);
+            if (state === null || state.from === undefined) {
+              return navigate(requestNewEntityPaths[key], {
+                state: { from: pathname },
+              });
+            }
+
+            return navigate(requestNewEntityPaths[key], { state });
           }
         }}
       >

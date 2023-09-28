@@ -31,9 +31,10 @@ import { parseErrorMsg } from "src/services/mutation-utils";
 import { generateTopicNameDescription } from "src/app/features/topics/request/utils";
 import { Dialog } from "src/app/components/Dialog";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function TopicRequest() {
+  const { state } = useLocation();
   const navigate = useNavigate();
   const toast = useToast();
 
@@ -88,9 +89,15 @@ function TopicRequest() {
 
   function cancelRequest() {
     form.reset();
+
+    if (state !== null && state.from !== undefined) {
+      navigate(state.from, { state: { from: undefined } });
+      return;
+    }
+
     navigate(-1);
   }
-
+  console.log("from", state);
   return (
     <>
       {cancelDialogVisible && (

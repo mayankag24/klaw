@@ -11,7 +11,7 @@ import {
 import { useMutation } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
 import { UseFormReturn } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Dialog } from "src/app/components/Dialog";
 import {
   Form,
@@ -51,6 +51,7 @@ const TopicProducerForm = ({
 }: TopicProducerFormProps) => {
   const [cancelDialogVisible, setCancelDialogVisible] = useState(false);
 
+  const { state } = useLocation();
   const navigate = useNavigate();
   const toast = useToast();
 
@@ -129,6 +130,12 @@ const TopicProducerForm = ({
 
   function cancelRequest() {
     topicProducerForm.reset();
+
+    if (state !== null && state.from !== undefined) {
+      navigate(state.from, { state: { from: undefined } });
+      return;
+    }
+
     navigate(-1);
   }
 

@@ -1,7 +1,7 @@
 import { Alert } from "@aivenio/aquarium";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { Pagination } from "src/app/components/Pagination";
 import AclDetailsModalContent from "src/app/features/components/AclDetailsModalContent";
 import { TableLayout } from "src/app/features/components/layouts/TableLayout";
