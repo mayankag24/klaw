@@ -1,4 +1,4 @@
-import { Box, Divider } from "@aivenio/aquarium";
+import { Box, Card, Divider } from "@aivenio/aquarium";
 import add from "@aivenio/aquarium/dist/src/icons/add";
 import codeBlock from "@aivenio/aquarium/dist/src/icons/codeBlock";
 import database from "@aivenio/aquarium/dist/src/icons/database";
@@ -7,6 +7,7 @@ import list from "@aivenio/aquarium/dist/src/icons/list";
 import person from "@aivenio/aquarium/dist/src/icons/person";
 import settings from "@aivenio/aquarium/dist/src/icons/settings";
 import tickCircle from "@aivenio/aquarium/dist/src/icons/tickCircle";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { TeamInfo } from "src/app/features/team-info/TeamInfo";
 import { usePendingRequests } from "src/app/hooks/usePendingRequests";
@@ -18,6 +19,9 @@ import { FeatureFlag } from "src/services/feature-flags/types";
 
 function MainNavigation() {
   const { pathname } = useLocation();
+  const [testCta, settestCta] = useState(
+    Boolean(localStorage.getItem("testCta"))
+  );
 
   const clusterViewFeatureFlagIsEnabled = useFeatureFlag(
     FeatureFlag.FEATURE_FLAG_VIEW_CLUSTER
@@ -151,6 +155,27 @@ function MainNavigation() {
           </MainNavigationSubmenuList>
         </li>
       </ul>
+      {!testCta && (
+        <Box.Flex paddingTop={"l2"}>
+          <Card
+            color="info-70"
+            primaryAction={{
+              href: "#",
+              text: "Go to form",
+            }}
+            secondaryAction={{
+              onClick: () => {
+                settestCta(true);
+                localStorage.setItem("testCta", "true");
+              },
+              text: "Begone",
+            }}
+            title="Tell us what you think!"
+          >
+            Please fill in this feedback form please please thank you.
+          </Card>
+        </Box.Flex>
+      )}
     </Box>
   );
 }
