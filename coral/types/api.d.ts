@@ -1315,8 +1315,8 @@ export type components = {
       options?: components["schemas"]["Options"];
       series?: string[];
       titleForReport?: string;
-      xaxisLabel?: string;
       yaxisLabel?: string;
+      xaxisLabel?: string;
     };
     Options: {
       title?: components["schemas"]["Title"];
@@ -1618,6 +1618,7 @@ export type components = {
       allPageNos: string[];
       /** @enum {string} */
       clusterStatus: "OFFLINE" | "ONLINE" | "NOT_KNOWN";
+      currentPage: string;
       associatedServers?: string;
       projectName?: string;
       serviceName?: string;
