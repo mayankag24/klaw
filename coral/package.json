@@ -14,7 +14,10 @@
   },
   "scripts": {
     "build": "tsc && vite build",
+    "build-test": "vite build --config vite.config-login.ts",
     "dev": "vite --mode remote-api",
+    "dev-test": "vite --config vite.config-login.ts --mode remote-api",
+    "preview-test": "vite build --config vite.config-login.ts --mode remote-api && vite preview --config vite.config-login.ts --mode remote-api",
     "start": "pnpm dev",
     "dev-without-api": "vite",
     "lint": "prettier --check . && eslint .",
