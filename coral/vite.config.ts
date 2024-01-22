@@ -138,15 +138,9 @@ export default defineConfig(({ mode }) => {
       "process.env": {
         ROUTER_BASENAME: getRouterBasename(environment),
         API_BASE_URL: getApiBaseUrl(environment),
-        FEATURE_FLAG_DASHBOARD: ["development", "remote-api"]
-          .includes(mode)
-          .toString(),
-        FEATURE_FLAG_ACTIVITY_LOG: ["development", "remote-api"]
-          .includes(mode)
-          .toString(),
-        FEATURE_FLAG_TOPIC_TYPE_FILTER: ["development", "remote-api"]
-          .includes(mode)
-          .toString(),
+        FEATURE_FLAG_DASHBOARD: "true",
+        FEATURE_FLAG_ACTIVITY_LOG: "true",
+        FEATURE_FLAG_TOPIC_TYPE_FILTER: "true",
       },
     },
     css: {
