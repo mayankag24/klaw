@@ -1,5 +1,7 @@
 package io.aiven.klaw.error;
 
+import static io.aiven.klaw.model.enums.PermissionType.APPROVE_TOPICS_CREATE;
+
 public class KlawErrorMessages {
 
   public static final String ACTIVE_DIRECTORY_ERR_CODE_101 = "AD101";
@@ -73,7 +75,7 @@ public class KlawErrorMessages {
 
   public static final String ANALYTICS_106 = "Acls per cluster";
 
-  public static final String ANALYTICS_107 = "Requests per day";
+  public static final String ANALYTICS_107 = "Approved requests per day";
 
   // Base overview service
   public static final String BASE_OVERVIEW_101 = "Not Authorized to see this.";
@@ -345,6 +347,9 @@ public class KlawErrorMessages {
 
   public static final String TOPICS_ERR_115 =
       "PartitionId cannot be empty or less than zero. Number of Offsets cannot be less than zero.";
+
+  public static final String TOPICS_ERR_116 =
+      "Please check if permission " + APPROVE_TOPICS_CREATE + " is assigned to you.";
 
   // Topic Validation
   public static final String TOPICS_VLD_ERR_101 =
